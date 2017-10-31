@@ -23,6 +23,7 @@ import cn.luoxi.show.common.packets.GroupMsgReqBody;
 import cn.luoxi.show.common.packets.JoinGroupReqBody;
 import cn.luoxi.show.common.packets.LoginReqBody;
 import cn.luoxi.show.common.packets.P2PReqBody;
+import cn.luoxi.show.common.packets.RetreatGroupReqBody;
 
 
 /**
@@ -41,7 +42,7 @@ public class ShowClientStarter {
   //监听
   private static ClientAioListener aioListener = new ShowClientAioListener();
   //断开连接后自动连接的，不想自动连接的请设置为null
-  private static ReconnConf reconnConf = new ReconnConf(5000l);
+  private static ReconnConf reconnConf = new ReconnConf(1000L);
   //公用的上下文对象
   private static ClientGroupContext groupContext = new ClientGroupContext(aioHandler, aioListener, reconnConf);
 
@@ -65,6 +66,7 @@ public class ShowClientStarter {
     buffer.append(i++ +"、输入'P toName text'向toName发送消息\n");
     buffer.append(i++ +"、输入'J groupName'申请加入groupName\n");
     buffer.append(i++ +"、输入'G groupName text'发送群聊消息\n");
+    buffer.append(i++ +"、输入'R groupName'退出群聊\n");
     buffer.append(i++ +"、输入'E'退出程序");
     //buffer.append(i++ +"、\n");
     log.info(buffer.toString());
@@ -88,6 +90,9 @@ public class ShowClientStarter {
           break;
         case "G":
           groupMsg(command[1], command[2]);
+          break;
+        case "R":
+          retreatGroup(command[1]);
           break;
         case "E":
           log.info("感谢使用");
@@ -166,5 +171,19 @@ public class ShowClientStarter {
     packet.setBody(Json.toJson(reqBody).getBytes(Const.CHARSET));
 
     Aio.send(clientChannelContext, packet);
+  }
+  /**
+   * 退群
+   * @param groupName 群名称
+   * @throws UnsupportedEncodingException
+   */
+  public static void retreatGroup(String groupName) throws UnsupportedEncodingException {
+    RetreatGroupReqBody reqBody = new RetreatGroupReqBody();
+    reqBody.setGroupName(groupName);
+
+    ShowPacket showPacket = new ShowPacket();
+    showPacket.setType(Type.RETREAT_GROUP_REQ);
+    showPacket.setBody(Json.toJson(reqBody).getBytes(Const.CHARSET));
+    Aio.send(clientChannelContext, showPacket);
   }
 }

@@ -20,6 +20,9 @@ public class ShowPacket extends Packet {
     super();
   }
 
+  public ShowPacket (byte type) {
+    this.type = type;
+  }
   public byte getType() {
     return type;
   }

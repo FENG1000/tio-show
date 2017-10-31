@@ -44,6 +44,15 @@ public interface Type {
   byte GROUP_MSG_RESP = 8;
 
   /**
+   * 退群请求
+   */
+  byte RETREAT_GROUP_REQ = 9;
+
+  /**
+   * 退群相应
+   */
+  byte RETREAT_GROUP_RESP = 9;
+  /**
    * 心跳
    */
   byte HEART_BEAT_REQ = 99;

@@ -17,6 +17,7 @@ import cn.luoxi.show.server.handler.GroupMsgReqHandler;
 import cn.luoxi.show.server.handler.JoinGroupReqHandler;
 import cn.luoxi.show.server.handler.LoginReqHandler;
 import cn.luoxi.show.server.handler.P2PReqHandler;
+import cn.luoxi.show.server.handler.RetreatGroupReqHandler;
 
 /**
  * 服务端消息处理
@@ -33,6 +34,7 @@ public class ShowServerAioHandler extends ShowAbsAioHandler implements ServerAio
     handlerMap.put(Type.P2P_REQ, new P2PReqHandler());
     handlerMap.put(Type.JOIN_GROUP_REQ, new JoinGroupReqHandler());
     handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgReqHandler());
+    handlerMap.put(Type.RETREAT_GROUP_REQ, new RetreatGroupReqHandler());
   }
   @Override
   public void handler(Packet packet, ChannelContext channelContext) throws Exception {

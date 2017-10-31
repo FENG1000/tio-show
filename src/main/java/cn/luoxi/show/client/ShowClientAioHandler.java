@@ -11,6 +11,7 @@ import cn.luoxi.show.client.handler.GroupMsgRespHandler;
 import cn.luoxi.show.client.handler.JoinGroupRespHandler;
 import cn.luoxi.show.client.handler.LoginRespHandler;
 import cn.luoxi.show.client.handler.P2PRespHandler;
+import cn.luoxi.show.client.handler.RetreatGroupRespHandler;
 import cn.luoxi.show.common.ShowAbsAioHandler;
 import cn.luoxi.show.common.ShowPacket;
 import cn.luoxi.show.common.Type;
@@ -29,6 +30,7 @@ public class ShowClientAioHandler extends ShowAbsAioHandler implements ClientAio
     handlerMap.put(Type.P2P_RESP, new P2PRespHandler());
     handlerMap.put(Type.JOIN_GROUP_RESP, new JoinGroupRespHandler());
     handlerMap.put(Type.GROUP_MSG_RESP, new GroupMsgRespHandler());
+    handlerMap.put(Type.RETREAT_GROUP_RESP, new RetreatGroupRespHandler());
   }
   @Override
   public void handler(Packet packet, ChannelContext channelContext) throws Exception {
@@ -38,12 +40,12 @@ public class ShowClientAioHandler extends ShowAbsAioHandler implements ClientAio
     showBsHandler.handler(showPacket, channelContext);
     return;
   }
-
+  private static ShowPacket heartbeatPacket = new ShowPacket(Type.HEART_BEAT_REQ);
   /**
    * 此方法如果返回null，框架层面则不会发心跳；如果返回非null，框架层面会定时发本方法返回的消息包
    */
   @Override
   public Packet heartbeatPacket() {
-    return new ShowPacket();
+    return heartbeatPacket;
   }
 }
