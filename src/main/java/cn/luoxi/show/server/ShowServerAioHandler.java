@@ -16,8 +16,10 @@ import cn.luoxi.show.common.inft.AbsShowBsHandler;
 import cn.luoxi.show.server.handler.GroupMsgReqHandler;
 import cn.luoxi.show.server.handler.JoinGroupReqHandler;
 import cn.luoxi.show.server.handler.LoginReqHandler;
+import cn.luoxi.show.server.handler.OffLineReqHandler;
 import cn.luoxi.show.server.handler.P2PReqHandler;
 import cn.luoxi.show.server.handler.RetreatGroupReqHandler;
+import cn.luoxi.show.server.handler.UnBindUserReqHandler;
 
 /**
  * 服务端消息处理
@@ -35,6 +37,8 @@ public class ShowServerAioHandler extends ShowAbsAioHandler implements ServerAio
     handlerMap.put(Type.JOIN_GROUP_REQ, new JoinGroupReqHandler());
     handlerMap.put(Type.GROUP_MSG_REQ, new GroupMsgReqHandler());
     handlerMap.put(Type.RETREAT_GROUP_REQ, new RetreatGroupReqHandler());
+    handlerMap.put(Type.OFF_LINE_REQ, new OffLineReqHandler());
+    handlerMap.put(Type.UN_BIND_USER_REQ, new UnBindUserReqHandler());
   }
   @Override
   public void handler(Packet packet, ChannelContext channelContext) throws Exception {

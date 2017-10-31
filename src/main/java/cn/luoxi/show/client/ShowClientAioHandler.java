@@ -10,8 +10,10 @@ import java.util.Map;
 import cn.luoxi.show.client.handler.GroupMsgRespHandler;
 import cn.luoxi.show.client.handler.JoinGroupRespHandler;
 import cn.luoxi.show.client.handler.LoginRespHandler;
+import cn.luoxi.show.client.handler.OffLineRespHandler;
 import cn.luoxi.show.client.handler.P2PRespHandler;
 import cn.luoxi.show.client.handler.RetreatGroupRespHandler;
+import cn.luoxi.show.client.handler.UnBindUserRespHandler;
 import cn.luoxi.show.common.ShowAbsAioHandler;
 import cn.luoxi.show.common.ShowPacket;
 import cn.luoxi.show.common.Type;
@@ -31,6 +33,8 @@ public class ShowClientAioHandler extends ShowAbsAioHandler implements ClientAio
     handlerMap.put(Type.JOIN_GROUP_RESP, new JoinGroupRespHandler());
     handlerMap.put(Type.GROUP_MSG_RESP, new GroupMsgRespHandler());
     handlerMap.put(Type.RETREAT_GROUP_RESP, new RetreatGroupRespHandler());
+    handlerMap.put(Type.OFF_LINT_RESP, new OffLineRespHandler());
+    handlerMap.put(Type.UN_BIND_USER_RESP, new UnBindUserRespHandler());
   }
   @Override
   public void handler(Packet packet, ChannelContext channelContext) throws Exception {

@@ -51,7 +51,28 @@ public interface Type {
   /**
    * 退群相应
    */
-  byte RETREAT_GROUP_RESP = 9;
+  byte RETREAT_GROUP_RESP = 10;
+
+  /**
+   * 踢出登录请求
+   */
+  byte OFF_LINE_REQ = 11;
+
+  /**
+   * 踢出登录响应
+   */
+  byte OFF_LINT_RESP = 12;
+
+  /**
+   * 退出登录请求
+   */
+  byte UN_BIND_USER_REQ = 13;
+
+  /**
+   * 退出登录响应
+   */
+  byte UN_BIND_USER_RESP = 14;
+
   /**
    * 心跳
    */
